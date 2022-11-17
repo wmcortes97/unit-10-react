@@ -5,6 +5,7 @@ const express = require("express");
 const morgan = require("morgan");
 const Sequelize = require("./models/index.js").sequelize;
 const indexRouter = require("./routes/index");
+const cors = require("cors");
 
 // variable to enable global error logging
 const enableGlobalErrorLogging =
@@ -16,6 +17,9 @@ app.use(express.json());
 
 //connecting routes/index.js to app.js
 app.use("/api", indexRouter);
+
+//Enable all CORS requests
+app.use(cors());
 
 //-------Test connection to database-------//
 (async () => {
