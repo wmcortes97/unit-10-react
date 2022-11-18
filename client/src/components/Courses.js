@@ -1,23 +1,39 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { Context } from "./Context";
+import { Link } from "react-router-dom";
 
 const Courses = () => {
+  const { actions, courses } = useContext(Context);
+
+  useEffect(() => {
+    const fetchCourses = async () => {
+      await actions.getCourses();
+    };
+    fetchCourses();
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <main>
-      <div class="wrap main--grid">
-        <a class="course--module course--link" href="course-detail.html">
-          <h2 class="course--label">Course</h2>
-          <h3 class="course--title">Build a Basic Bookcase</h3>
-        </a>
-        <a class="course--module course--link" href="course-detail.html">
-          <h2 class="course--label">Course</h2>
-          <h3 class="course--title">Learn How to Program</h3>
-        </a>
-        <a class="course--module course--link" href="course-detail.html">
-          <h2 class="course--label">Course</h2>
-          <h3 class="course--title">Learn How to Test Programs</h3>
-        </a>
-        <a class="course--module course--add--module" href="create-course.html">
-          <span class="course--add--title">
+      <div className="wrap main--grid">
+        {courses.map((course) => {
+          return (
+            <Link
+              key={course.id}
+              className="course--module course--link"
+              to={`/courses/${course.id}`}
+            >
+              <h2 className="course--label">Course</h2>
+              <h3 className="course--title">{course.title}</h3>
+            </Link>
+          );
+        })}
+
+        <a
+          className="course--module course--add--module"
+          href="create-course.html"
+        >
+          <span className="course--add--title">
             <svg
               version="1.1"
               xmlns="http://www.w3.org/2000/svg"
