@@ -15,11 +15,11 @@ const enableGlobalErrorLogging =
 const app = express();
 app.use(express.json());
 
-//connecting routes/index.js to app.js
-app.use("/api", indexRouter);
-
 //Enable all CORS requests
 app.use(cors());
+
+//connecting routes/index.js to app.js
+app.use("/api", indexRouter);
 
 //-------Test connection to database-------//
 (async () => {
