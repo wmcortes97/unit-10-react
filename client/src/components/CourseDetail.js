@@ -7,7 +7,7 @@ const CourseDetail = ({ context }) => {
 
   useEffect(() => {
     context.data
-      .getCourse()
+      .getCourse(id)
       .then((data) => setCourses(data))
       .catch((err) => console.log(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps
