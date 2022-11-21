@@ -10,6 +10,7 @@ import CourseDetail from "./components/CourseDetail";
 import UserSignOut from "./components/UserSignOut";
 import UpdateCourse from "./components/UpdateCourse";
 import UserSignUp from "./components/UserSignUp";
+import CreateCourse from "./components/CreateCourse";
 
 const HeaderWithContext = withContext(Header);
 const CoursesWithContext = withContext(Courses);
@@ -18,6 +19,7 @@ const CourseDetailWithContext = withContext(CourseDetail);
 const UserSignOutWithContext = withContext(UserSignOut);
 const UpdateCourseWithContext = withContext(UpdateCourse);
 const UserSignUpWithContext = withContext(UserSignUp);
+const CreateCourseWithContext = withContext(CreateCourse);
 
 const App = () => {
   return (
@@ -27,13 +29,14 @@ const App = () => {
       <Routes>
         <Route path="/" element={<CoursesWithContext />} />
         <Route path="courses/:id" element={<CourseDetailWithContext />} />
+        <Route path="courses/create" element={<CreateCourseWithContext />} />
         <Route
           path="courses/:id/update"
           element={<UpdateCourseWithContext />}
         />
         <Route path="/signin" element={<UserSignInWithContext />} />
-        <Route path="/signout" element={<UserSignOutWithContext />} />
         <Route path="/signup" element={<UserSignUpWithContext />} />
+        <Route path="/signout" element={<UserSignOutWithContext />} />
       </Routes>
     </React.Fragment>
   );
