@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Buffer } from "buffer";
-import UpdateCourse from "./components/UpdateCourse";
 
 export default class Data {
   api(
@@ -32,6 +31,7 @@ export default class Data {
     return fetch(url, options);
   }
 
+  //------------------------------HELPER FUNCTIONS--------------------------------//
   async getUser(username, password) {
     const response = await this.api(`/users`, "GET", null, true, {
       username,
@@ -81,7 +81,7 @@ export default class Data {
     const response = await this.api(`/courses/${id}`, "POST");
 
     if (response.status === 204) {
-      console.log("updated");
+      console.log("created");
     } else {
       throw new Error();
     }
@@ -97,8 +97,11 @@ export default class Data {
     }
   }
 
-  async deleteCourse(id) {
-    const response = await this.api(`/courses/${id}`, "DELETE", null, true);
+  async deleteCourse(id, username, password) {
+    const response = await this.api(`/courses/${id}`, "DELETE", null, true, {
+      username,
+      password,
+    });
 
     if (response.status === 204) {
       console.log("deleted");

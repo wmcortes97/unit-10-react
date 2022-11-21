@@ -1,5 +1,5 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useRef } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const UserSignUp = ({ context }) => {
   const firstName = useRef(null);
@@ -20,7 +20,7 @@ const UserSignUp = ({ context }) => {
       <div className="form--centered">
         <h2>Sign Up</h2>
 
-        <form>
+        <form onSubmit={handleSubmit}>
           <label htmlFor="firstName">First Name</label>
           <input
             id="firstName"
@@ -67,6 +67,12 @@ const UserSignUp = ({ context }) => {
       </div>
     </main>
   );
+
+  //creating a user
+  const user = {
+    emailAddress,
+    password,
+  };
 };
 
 export default UserSignUp;

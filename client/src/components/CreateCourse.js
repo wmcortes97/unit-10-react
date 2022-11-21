@@ -1,6 +1,6 @@
 import React from "react";
 
-const CreateCourse = () => {
+const CreateCourse = ({ context }) => {
   return (
     <main>
       <div className="wrap">
