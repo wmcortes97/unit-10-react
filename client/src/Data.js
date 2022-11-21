@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Buffer } from "buffer";
+import UpdateCourse from "./components/UpdateCourse";
 
 export default class Data {
   api(
@@ -69,8 +70,29 @@ export default class Data {
 
   async getCourse(id) {
     const response = await this.api(`/courses/${id}`, "GET");
+
     if (response.status === 200) {
       return response.json().then((data) => data);
+    } else {
+      throw new Error();
+    }
+  }
+
+  async UpdateCourse(id) {
+    const response = await this.api(`/courses/${id}`, "PUT");
+
+    if (response.status === 204) {
+      console.log("updated");
+    } else {
+      throw new Error();
+    }
+  }
+
+  async deleteCourse(id) {
+    const response = await this.api(`/courses/${id}`, "DELETE");
+
+    if (response.status === 204) {
+      console.log("deleted");
     } else {
       throw new Error();
     }
