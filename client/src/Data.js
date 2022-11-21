@@ -77,11 +77,14 @@ export default class Data {
       throw new Error();
     }
   }
-  async createCourse(id) {
-    const response = await this.api(`/courses/${id}`, "POST");
-
-    if (response.status === 204) {
-      console.log("created");
+  async createCourse(body) {
+    const response = await this.api(`/courses`, "POST", body);
+    if (response.status === 201) {
+      return [];
+    } else if (response.status === 400) {
+      return response.json().then((data) => {
+        return data.errors;
+      });
     } else {
       throw new Error();
     }

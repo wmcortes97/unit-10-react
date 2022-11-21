@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link, NavLink } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
 
 const CourseDetail = ({ context }) => {
   const [course, setCourse] = useState([]);
@@ -15,7 +16,11 @@ const CourseDetail = ({ context }) => {
   }, []);
 
   const handleDelete = (id) => {
-    context.data.deleteCourse(id);
+    context.data.deleteCourse(
+      id,
+      context.authenticatedUser.email,
+      context.authenticatedUser.password
+    );
   };
 
   return (
@@ -49,7 +54,7 @@ const CourseDetail = ({ context }) => {
               <p>
                 By {course.firstName} {course.lastName}
               </p>
-              <p>{course.description}</p>
+              <ReactMarkdown children={course.description} />
             </div>
             <div>
               <h3 className="course--detail--title">Estimated Time</h3>
@@ -57,21 +62,7 @@ const CourseDetail = ({ context }) => {
 
               <h3 className="course--detail--title">Materials Needed</h3>
               <ul className="course--detail--list">
-                {/* {materials.map((material) => {
-                  return <li>{material}</li>;
-                })} */}
-
-                <li>{course.materialsNeeded}</li>
-                <li>1/2 x 3/4 inch parting strip</li>
-                <li>1 x 2 common pine</li>
-                <li>1 x 4 common pine</li>
-                <li>1 x 10 common pine</li>
-                <li>1/4 inch thick lauan plywood</li>
-                <li>Finishing Nails</li>
-                <li>Sandpaper</li>
-                <li>Wood Glue</li>
-                <li>Wood Filler</li>
-                <li>Minwax Oil Based Polyurethane</li>
+                <ReactMarkdown children={course.materialsNeeded} />
               </ul>
             </div>
           </div>
