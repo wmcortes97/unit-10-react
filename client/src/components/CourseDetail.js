@@ -3,6 +3,7 @@ import { useParams, Link, NavLink } from "react-router-dom";
 
 const CourseDetail = ({ context }) => {
   const [course, setCourse] = useState([]);
+
   const { id } = useParams();
 
   useEffect(() => {
@@ -12,6 +13,10 @@ const CourseDetail = ({ context }) => {
       .catch((err) => console.log(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const handleDelete = (id) => {
+    context.data.deleteCourse(id);
+  };
 
   return (
     <main>
@@ -24,7 +29,7 @@ const CourseDetail = ({ context }) => {
             className="button"
             to="/"
             key={id}
-            onClick={() => context.data.deleteCourse(id)}
+            onClick={() => handleDelete(id)}
           >
             Delete Course
           </NavLink>
@@ -41,7 +46,9 @@ const CourseDetail = ({ context }) => {
             <div>
               <h3 className="course--detail--title">Course</h3>
               <h4 className="course--name">{course.title}</h4>
-              <p>By Joe Smith</p>
+              <p>
+                By {course.firstName} {course.lastName}
+              </p>
               <p>{course.description}</p>
             </div>
             <div>

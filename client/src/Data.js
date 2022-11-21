@@ -78,7 +78,7 @@ export default class Data {
     }
   }
 
-  async UpdateCourse(id) {
+  async updateCourse(id) {
     const response = await this.api(`/courses/${id}`, "PUT");
 
     if (response.status === 204) {
@@ -89,7 +89,7 @@ export default class Data {
   }
 
   async deleteCourse(id) {
-    const response = await this.api(`/courses/${id}`, "DELETE");
+    const response = await this.api(`/courses/${id}`, "DELETE", null, true);
 
     if (response.status === 204) {
       console.log("deleted");

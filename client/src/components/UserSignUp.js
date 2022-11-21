@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const UserSignUp = () => {
   return (
@@ -18,16 +19,13 @@ const UserSignUp = () => {
           <button className="button" type="submit">
             Sign Up
           </button>
-          <button
-            className="button button-secondary"
-            onclick="event.preventDefault(); location.href='index.html';"
-          >
+          <NavLink className="button button-secondary" to="/">
             Cancel
-          </button>
+          </NavLink>
         </form>
         <p>
           Already have a user account? Click here to{" "}
-          <a href="sign-in.html">sign in</a>!
+          <NavLink to="/signin">sign in</NavLink>!
         </p>
       </div>
     </main>
