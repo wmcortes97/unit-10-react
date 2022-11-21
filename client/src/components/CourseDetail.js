@@ -57,9 +57,10 @@ const CourseDetail = ({ context }) => {
 
               <h3 className="course--detail--title">Materials Needed</h3>
               <ul className="course--detail--list">
-                {/* {course.materialsNeeded?.map((materials) => {
-                  return <li>{materials}</li>;
+                {/* {materials.map((material) => {
+                  return <li>{material}</li>;
                 })} */}
+
                 <li>{course.materialsNeeded}</li>
                 <li>1/2 x 3/4 inch parting strip</li>
                 <li>1 x 2 common pine</li>

@@ -1,7 +1,20 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const UserSignUp = () => {
+const UserSignUp = ({ context }) => {
+  const firstName = useRef(null);
+  const lastName = useRef(null);
+  const emailAddress = useRef(null);
+  const password = useRef(null);
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await context.actions
+      .signIn(emailAddress.current.value, password.current.value)
+      .then(navigate("/"));
+  };
+
   return (
     <main>
       <div className="form--centered">
@@ -9,13 +22,37 @@ const UserSignUp = () => {
 
         <form>
           <label htmlFor="firstName">First Name</label>
-          <input id="firstName" name="firstName" type="text" value="" />
+          <input
+            id="firstName"
+            name="firstName"
+            type="text"
+            defaultValue=""
+            ref={firstName}
+          />
           <label htmlFor="lastName">Last Name</label>
-          <input id="lastName" name="lastName" type="text" value="" />
+          <input
+            id="lastName"
+            name="lastName"
+            type="text"
+            defaultValue=""
+            ref={lastName}
+          />
           <label htmlFor="emailAddress">Email Address</label>
-          <input id="emailAddress" name="emailAddress" type="email" value="" />
+          <input
+            id="emailAddress"
+            name="emailAddress"
+            type="email"
+            defaultValue=""
+            ref={emailAddress}
+          />
           <label htmlFor="password">Password</label>
-          <input id="password" name="password" type="password" value="" />
+          <input
+            id="password"
+            name="password"
+            type="password"
+            defaultValue=""
+            ref={password}
+          />
           <button className="button" type="submit">
             Sign Up
           </button>
