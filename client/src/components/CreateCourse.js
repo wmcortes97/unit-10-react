@@ -19,8 +19,8 @@ const CreateCourse = ({ context }) => {
   // };
 
   const handleCreate = () => {
-    const body = {
-      //userId: context.authenticatedUser.id, should be course.id
+    const course = {
+      userId: context.authenticatedUser.id,
       title: title.current.value,
       description: description.current.value,
       estimatedTime: estimatedTime.current.value,
@@ -29,10 +29,9 @@ const CreateCourse = ({ context }) => {
 
     context.data
       .createCourse(
-        // body.userId,
+        course,
         context.authenticatedUser.email,
-        context.authenticatedUser.password,
-        body
+        context.authenticatedUser.password
       )
       .then((response) => {
         navigate("/");
