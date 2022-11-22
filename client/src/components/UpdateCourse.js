@@ -3,6 +3,8 @@ import { useParams, useNavigate } from "react-router-dom";
 
 const UpdateCourse = ({ context }) => {
   const [course, setCourse] = useState([]);
+  const [errors, setErrors] = useState([]);
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [estimatedTime, setEstimatedTime] = useState("");
@@ -24,6 +26,34 @@ const UpdateCourse = ({ context }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const handleUpdateCourse = (e) => {
+    e.preventDefault();
+    const course = {
+      id,
+      title,
+      description,
+      estimatedTime,
+      materialsNeeded,
+    };
+    context.data
+      .updateCourse(
+        id,
+        course,
+        context.authenticatedUser.email,
+        context.authenticatedUser.password
+      )
+      .then((errors) => {
+        if (errors.length) {
+          setErrors(errors);
+        } else {
+          navigate("/");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        // navigate("/error")
+      });
+  };
   return (
     <main>
       <div className="wrap">
@@ -38,7 +68,7 @@ const UpdateCourse = ({ context }) => {
             </ul>
           </div>
         ) : null} */}
-        <form>
+        <form onSubmit={handleUpdateCourse}>
           <div className="main--flex">
             <div>
               <label htmlFor="courseTitle">Course Title</label>
