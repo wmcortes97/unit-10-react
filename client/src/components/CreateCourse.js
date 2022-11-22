@@ -11,13 +11,6 @@ const CreateCourse = ({ context }) => {
   const estimatedTime = useRef();
   const materialsNeeded = useRef();
 
-  // const body = {
-  //   title,
-  //   description,
-  //   estimatedTime,
-  //   materialsNeeded,
-  // };
-
   const handleCreate = () => {
     const course = {
       userId: context.authenticatedUser.id,
