@@ -2,11 +2,30 @@ import React, { useRef } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
 const UserSignUp = ({ context }) => {
+  const navigate = useNavigate();
+
   const firstName = useRef(null);
   const lastName = useRef(null);
   const emailAddress = useRef(null);
   const password = useRef(null);
-  const navigate = useNavigate();
+
+  const handleSignUp = () => {
+    const user = {
+      firstName: firstName.current.value,
+      lastName: lastName.current.value,
+      emailAddress: emailAddress.current.value,
+      password: password.current.value,
+    };
+
+    context.data
+      .createUser(user)
+      .then((response) => {
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error, "on line 34 in usersignup component");
+      });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -53,7 +72,11 @@ const UserSignUp = ({ context }) => {
             defaultValue=""
             ref={password}
           />
-          <button className="button" type="submit">
+          <button
+            className="button"
+            type="submit"
+            onClick={() => handleSignUp()}
+          >
             Sign Up
           </button>
           <NavLink className="button button-secondary" to="/">

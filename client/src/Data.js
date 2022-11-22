@@ -79,8 +79,6 @@ export default class Data {
     }
   }
   async createCourse(body, username, password) {
-    //will I need id?
-
     const response = await this.api(`/courses`, "POST", body, true, {
       username,
       password,

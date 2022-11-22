@@ -1,8 +1,8 @@
-import React, { useRef } from "react";
-import { NavLink, Link, useNavigate } from "react-router-dom";
+import React, { useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const CreateCourse = ({ context }) => {
-  // const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState([]);
 
   const navigate = useNavigate();
 
@@ -30,7 +30,8 @@ const CreateCourse = ({ context }) => {
         navigate("/");
       })
       .catch((error) => {
-        console.log("server error line 41 create course");
+        setErrors(error);
+        // console.log("server error line 41 create course");
         // navigate("/error");
       });
   };
@@ -43,7 +44,7 @@ const CreateCourse = ({ context }) => {
     <main>
       <div className="wrap">
         <h2>Create Course</h2>
-        {/* {errors && errors.length ? (
+        {errors && errors.length ? (
           <div className="validation--errors">
             <h3>Validation Errors</h3>
             <ul>
@@ -52,7 +53,7 @@ const CreateCourse = ({ context }) => {
               ))}
             </ul>
           </div>
-        ) : null} */}
+        ) : null}
         <form onSubmit={handleSubmit}>
           <div className="main--flex">
             <div>
