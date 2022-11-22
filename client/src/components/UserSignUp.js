@@ -37,7 +37,7 @@ const UserSignUp = ({ context }) => {
   //     .then(navigate("/"));
   // };
 
-  //----------------------------new way------------------------//
+  //----------------------------updated way to show errors------------------------//
   const handleSubmit = (e) => {
     e.preventDefault();
     const user = {
