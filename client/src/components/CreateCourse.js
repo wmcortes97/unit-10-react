@@ -11,7 +11,37 @@ const CreateCourse = ({ context }) => {
   const estimatedTime = useRef();
   const materialsNeeded = useRef();
 
-  const handleCreate = () => {
+  // const handleCreate = () => {
+  //   const course = {
+  //     userId: context.authenticatedUser.id,
+  //     title: title.current.value,
+  //     description: description.current.value,
+  //     estimatedTime: estimatedTime.current.value,
+  //     materialsNeeded: materialsNeeded.current.value,
+  //   };
+
+  //   context.data
+  //     .createCourse(
+  //       course,
+  //       context.authenticatedUser.email,
+  //       context.authenticatedUser.password
+  //     )
+  //     .then((response) => {
+  //       navigate("/");
+  //     })
+  //     .catch((error) => {
+  //       setErrors(error);
+  //       // console.log("server error line 41 create course");
+  //       // navigate("/error");
+  //     });
+  // };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  // };
+  //-----------------------updated way------------------//
+  const handleCreateCourse = (e) => {
+    e.preventDefault();
     const course = {
       userId: context.authenticatedUser.id,
       title: title.current.value,
@@ -19,25 +49,23 @@ const CreateCourse = ({ context }) => {
       estimatedTime: estimatedTime.current.value,
       materialsNeeded: materialsNeeded.current.value,
     };
-
     context.data
       .createCourse(
         course,
         context.authenticatedUser.email,
         context.authenticatedUser.password
       )
-      .then((response) => {
-        navigate("/");
+      .then((errors) => {
+        if (errors.length) {
+          setErrors(errors);
+        } else {
+          navigate("/");
+        }
       })
-      .catch((error) => {
-        setErrors(error);
-        // console.log("server error line 41 create course");
-        // navigate("/error");
+      .catch((err) => {
+        console.log(err);
+        // navigate("/error")
       });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
   };
 
   return (
@@ -54,7 +82,7 @@ const CreateCourse = ({ context }) => {
             </ul>
           </div>
         ) : null}
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleCreateCourse}>
           <div className="main--flex">
             <div>
               <label htmlFor="courseTitle">Course Title</label>
@@ -98,7 +126,7 @@ const CreateCourse = ({ context }) => {
           <button
             className="button"
             type="submit"
-            onClick={() => handleCreate()}
+            // onClick={() => handleCreate()}
           >
             Create Course
           </button>

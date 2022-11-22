@@ -38,7 +38,7 @@ const UserSignUp = ({ context }) => {
   // };
 
   //----------------------------updated way to show errors------------------------//
-  const handleSubmit = (e) => {
+  const handleSignUp = (e) => {
     e.preventDefault();
     const user = {
       firstName: firstName.current.value,
@@ -51,7 +51,7 @@ const UserSignUp = ({ context }) => {
       .createUser(user)
       .then((errors) => {
         if (errors.length) {
-          setErrors({ errors });
+          setErrors(errors);
         } else {
           context.actions
             .signIn(emailAddress.current.value, password.current.value)
@@ -66,6 +66,9 @@ const UserSignUp = ({ context }) => {
         // navigate("/error")
       });
   };
+  function handleCancel() {
+    navigate("/");
+  }
 
   return (
     <main>
@@ -81,7 +84,7 @@ const UserSignUp = ({ context }) => {
             </ul>
           </div>
         ) : null}
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSignUp}>
           <label htmlFor="firstName">First Name</label>
           <input
             id="firstName"
@@ -132,10 +135,6 @@ const UserSignUp = ({ context }) => {
       </div>
     </main>
   );
-
-  function handleCancel() {
-    navigate("/");
-  }
 };
 
 export default UserSignUp;
