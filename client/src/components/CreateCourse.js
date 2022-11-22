@@ -103,13 +103,16 @@ const CreateCourse = ({ context }) => {
             Create Course
           </button>
 
-          <Link className="button button-secondary" to="/">
+          <button onClick={handleCancel} className="button button-secondary">
             Cancel
-          </Link>
+          </button>
         </form>
       </div>
     </main>
   );
+  function handleCancel() {
+    navigate("/");
+  }
 };
 
 export default CreateCourse;

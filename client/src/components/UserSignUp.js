@@ -1,7 +1,9 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
 const UserSignUp = ({ context }) => {
+  const [errors, setErrors] = useState([]);
+
   const navigate = useNavigate();
 
   const firstName = useRef(null);
@@ -23,6 +25,7 @@ const UserSignUp = ({ context }) => {
         navigate("/");
       })
       .catch((error) => {
+        setErrors(error);
         console.log(error, "on line 34 in usersignup component");
       });
   };
@@ -38,7 +41,16 @@ const UserSignUp = ({ context }) => {
     <main>
       <div className="form--centered">
         <h2>Sign Up</h2>
-
+        {errors && errors.length ? (
+          <div className="validation--errors">
+            <h3>Validation Errors</h3>
+            <ul>
+              {errors.map((error, index) => (
+                <li key={index}>{error}</li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
         <form onSubmit={handleSubmit}>
           <label htmlFor="firstName">First Name</label>
           <input
@@ -79,9 +91,9 @@ const UserSignUp = ({ context }) => {
           >
             Sign Up
           </button>
-          <NavLink className="button button-secondary" to="/">
+          <button onClick={handleCancel} className="button button-secondary">
             Cancel
-          </NavLink>
+          </button>
         </form>
         <p>
           Already have a user account? Click here to{" "}
@@ -91,11 +103,9 @@ const UserSignUp = ({ context }) => {
     </main>
   );
 
-  //creating a user
-  const user = {
-    emailAddress,
-    password,
-  };
+  function handleCancel() {
+    navigate("/");
+  }
 };
 
 export default UserSignUp;
