@@ -12,6 +12,8 @@ import UpdateCourse from "./components/UpdateCourse";
 import UserSignUp from "./components/UserSignUp";
 import CreateCourse from "./components/CreateCourse";
 
+//------------COMPONENTS WITH CONTEXT-----------//
+
 const HeaderWithContext = withContext(Header);
 const CoursesWithContext = withContext(Courses);
 const UserSignInWithContext = withContext(UserSignIn);

@@ -1,28 +1,48 @@
 import React, { useRef } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 
 const CreateCourse = ({ context }) => {
   // const [errors, setErrors] = useState([]);
 
-  const title = useRef(null);
-  const description = useRef(null);
-  const estimatedTime = useRef(null);
-  const materialsNeeded = useRef(null);
+  const navigate = useNavigate();
 
-  const body = {
-    title,
-    description,
-    estimatedTime,
-    materialsNeeded,
+  const title = useRef();
+  const description = useRef();
+  const estimatedTime = useRef();
+  const materialsNeeded = useRef();
+
+  // const body = {
+  //   title,
+  //   description,
+  //   estimatedTime,
+  //   materialsNeeded,
+  // };
+
+  const handleCreate = () => {
+    const body = {
+      //userId: context.authenticatedUser.id, should be course.id
+      title: title.current.value,
+      description: description.current.value,
+      estimatedTime: estimatedTime.current.value,
+      materialsNeeded: materialsNeeded.current.value,
+    };
+
+    context.data
+      .createCourse(
+        // body.userId,
+        context.authenticatedUser.email,
+        context.authenticatedUser.password,
+        body
+      )
+      .then((response) => {
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log("server error line 41 create course");
+        // navigate("/error");
+      });
   };
 
-  const handleCreate = (body) => {
-    context.data.createCourse(
-      body
-      // context.authenticatedUser.email,
-      // context.authenticatedUser.password
-    );
-  };
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -44,7 +64,7 @@ const CreateCourse = ({ context }) => {
         <form onSubmit={handleSubmit}>
           <div className="main--flex">
             <div>
-              <label for="courseTitle">Course Title</label>
+              <label htmlFor="courseTitle">Course Title</label>
               <input
                 id="courseTitle"
                 name="courseTitle"
@@ -55,7 +75,7 @@ const CreateCourse = ({ context }) => {
 
               <p>By Joe Smith</p>
 
-              <label for="courseDescription">Course Description</label>
+              <label htmlFor="courseDescription">Course Description</label>
               <textarea
                 id="courseDescription"
                 name="courseDescription"
@@ -64,7 +84,7 @@ const CreateCourse = ({ context }) => {
               ></textarea>
             </div>
             <div>
-              <label for="estimatedTime">Estimated Time</label>
+              <label htmlFor="estimatedTime">Estimated Time</label>
               <input
                 id="estimatedTime"
                 name="estimatedTime"
@@ -73,7 +93,7 @@ const CreateCourse = ({ context }) => {
                 ref={estimatedTime}
               />
 
-              <label for="materialsNeeded">Materials Needed</label>
+              <label htmlFor="materialsNeeded">Materials Needed</label>
               <textarea
                 id="materialsNeeded"
                 name="materialsNeeded"
@@ -85,7 +105,7 @@ const CreateCourse = ({ context }) => {
           <button
             className="button"
             type="submit"
-            onClick={() => handleCreate(body)}
+            onClick={() => handleCreate()}
           >
             Create Course
           </button>

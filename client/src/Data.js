@@ -31,7 +31,7 @@ export default class Data {
     return fetch(url, options);
   }
 
-  //------------------------------HELPER FUNCTIONS--------------------------------//
+  //------------------------------HELPER FUNCTIONS: USER --------------------------------//
   async getUser(username, password) {
     const response = await this.api(`/users`, "GET", null, true, {
       username,
@@ -59,6 +59,7 @@ export default class Data {
     }
   }
 
+  //----------------------------HELPER FUNCTIONS: COURSES----------------------------------//
   async getCourses() {
     const response = await this.api("/courses", "GET");
     if (response.status === 200) {
@@ -77,8 +78,13 @@ export default class Data {
       throw new Error();
     }
   }
-  async createCourse(body) {
-    const response = await this.api(`/courses`, "POST", body);
+  async createCourse(body, username, password) {
+    //will I need id?
+
+    const response = await this.api(`/courses`, "POST", body, true, {
+      username,
+      password,
+    });
     if (response.status === 201) {
       return [];
     } else if (response.status === 400) {

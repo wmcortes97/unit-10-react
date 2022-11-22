@@ -27,6 +27,7 @@ router.get(
     let user = req.currentUser;
 
     res.json({
+      id: user.id,
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.emailAddress,
