@@ -11,35 +11,6 @@ const CreateCourse = ({ context }) => {
   const estimatedTime = useRef();
   const materialsNeeded = useRef();
 
-  // const handleCreate = () => {
-  //   const course = {
-  //     userId: context.authenticatedUser.id,
-  //     title: title.current.value,
-  //     description: description.current.value,
-  //     estimatedTime: estimatedTime.current.value,
-  //     materialsNeeded: materialsNeeded.current.value,
-  //   };
-
-  //   context.data
-  //     .createCourse(
-  //       course,
-  //       context.authenticatedUser.email,
-  //       context.authenticatedUser.password
-  //     )
-  //     .then((response) => {
-  //       navigate("/");
-  //     })
-  //     .catch((error) => {
-  //       setErrors(error);
-  //       // console.log("server error line 41 create course");
-  //       // navigate("/error");
-  //     });
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  // };
-  //-----------------------updated way------------------//
   const handleCreateCourse = (e) => {
     e.preventDefault();
     const course = {
@@ -67,6 +38,9 @@ const CreateCourse = ({ context }) => {
         // navigate("/error")
       });
   };
+  function handleCancel() {
+    navigate("/");
+  }
 
   return (
     <main>
@@ -123,11 +97,7 @@ const CreateCourse = ({ context }) => {
               ></textarea>
             </div>
           </div>
-          <button
-            className="button"
-            type="submit"
-            // onClick={() => handleCreate()}
-          >
+          <button className="button" type="submit">
             Create Course
           </button>
 
@@ -138,9 +108,6 @@ const CreateCourse = ({ context }) => {
       </div>
     </main>
   );
-  function handleCancel() {
-    navigate("/");
-  }
 };
 
 export default CreateCourse;

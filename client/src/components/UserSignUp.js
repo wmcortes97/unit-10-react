@@ -11,33 +11,6 @@ const UserSignUp = ({ context }) => {
   const emailAddress = useRef(null);
   const password = useRef(null);
 
-  // const handleSignUp = () => {
-  //   const user = {
-  //     firstName: firstName.current.value,
-  //     lastName: lastName.current.value,
-  //     emailAddress: emailAddress.current.value,
-  //     password: password.current.value,
-  //   };
-
-  //   context.data
-  //     .createUser(user)
-  //     .then((response) => {
-  //       navigate("/");
-  //     })
-  //     .catch((error) => {
-  //       console.log("there is an error on userSignUp component");
-  //       // navigate("/error")
-  //     });
-  // };
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   await context.actions
-  //     .signIn(emailAddress.current.value, password.current.value)
-  //     .then(navigate("/"));
-  // };
-
-  //----------------------------updated way to show errors------------------------//
   const handleSignUp = (e) => {
     e.preventDefault();
     const user = {
@@ -117,11 +90,7 @@ const UserSignUp = ({ context }) => {
             defaultValue=""
             ref={password}
           />
-          <button
-            className="button"
-            type="submit"
-            // onClick={() => handleSignUp()}
-          >
+          <button className="button" type="submit">
             Sign Up
           </button>
           <button onClick={handleCancel} className="button button-secondary">
