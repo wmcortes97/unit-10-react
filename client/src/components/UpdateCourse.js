@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 const UpdateCourse = ({ context }) => {
+  const [course, setCourse] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [estimatedTime, setEstimatedTime] = useState("");
@@ -51,7 +52,9 @@ const UpdateCourse = ({ context }) => {
                 }}
               />
 
-              <p>{/* By {course.firstName} {course.lastName} */}</p>
+              <p>
+                By {course.firstName} {course.lastName}
+              </p>
 
               <label htmlFor="courseDescription">Course Description</label>
               <textarea
