@@ -17,6 +17,7 @@ const UpdateCourse = ({ context }) => {
     context.data
       .getCourse(id)
       .then((course) => {
+        setCourse(course);
         setTitle(course.title);
         setDescription(course.description);
         setEstimatedTime(course.estimatedTime);
@@ -29,11 +30,11 @@ const UpdateCourse = ({ context }) => {
   const handleUpdateCourse = (e) => {
     e.preventDefault();
     const course = {
-      id,
       title,
       description,
       estimatedTime,
       materialsNeeded,
+      // userId: context.authenticatedUser.id, //used to be id
     };
     context.data
       .updateCourse(
@@ -45,6 +46,7 @@ const UpdateCourse = ({ context }) => {
       .then((errors) => {
         if (errors.length) {
           setErrors(errors);
+          console.log(errors);
         } else {
           navigate("/");
         }

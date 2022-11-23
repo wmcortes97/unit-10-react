@@ -148,7 +148,7 @@ router.put(
     try {
       course = await Course.findByPk(req.params.id);
       if (course) {
-        if (course.userId === req.body.userId) {
+        if (course.userId === req.currentUser.id) {
           await course.update(req.body);
 
           res.status(204).end();
