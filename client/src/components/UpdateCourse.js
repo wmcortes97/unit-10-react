@@ -60,7 +60,7 @@ const UpdateCourse = ({ context }) => {
     <main>
       <div className="wrap">
         <h2>Update Course</h2>
-        {/* {errors && errors.length ? (
+        {errors && errors.length ? (
           <div className="validation--errors">
             <h3>Validation Errors</h3>
             <ul>
@@ -69,7 +69,7 @@ const UpdateCourse = ({ context }) => {
               ))}
             </ul>
           </div>
-        ) : null} */}
+        ) : null}
         <form onSubmit={handleUpdateCourse}>
           <div className="main--flex">
             <div>

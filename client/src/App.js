@@ -43,7 +43,11 @@ const App = () => {
         />
         <Route
           path="courses/:id/update"
-          element={<UpdateCourseWithContext />}
+          element={
+            <PrivateRouteWithContext>
+              <UpdateCourseWithContext />
+            </PrivateRouteWithContext>
+          }
         />
         <Route path="/signin" element={<UserSignInWithContext />} />
         <Route path="/signup" element={<UserSignUpWithContext />} />
