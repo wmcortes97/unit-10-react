@@ -25,27 +25,30 @@ const CourseDetail = ({ context }) => {
 
   return (
     <main>
-      {context.authenticatedUser &&
-      context.authenticatedUser.id === course.userId ? (
-        <div className="actions--bar">
-          <div className="wrap">
-            <Link className="button" to="update">
-              Update Course
-            </Link>
-            <NavLink
-              className="button"
-              to="/"
-              key={id}
-              onClick={() => handleDelete(id)}
-            >
-              Delete Course
-            </NavLink>
-            <Link className="button button-secondary" to="/">
-              Return to List
-            </Link>
-          </div>
+      <div className="actions--bar">
+        <div className="wrap">
+          {context.authenticatedUser &&
+          context.authenticatedUser.id === course.userId ? (
+            <React.Fragment>
+              <Link className="button" to="update">
+                Update Course
+              </Link>
+              <NavLink
+                className="button"
+                to="/"
+                key={id}
+                onClick={() => handleDelete(id)}
+              >
+                Delete Course
+              </NavLink>
+            </React.Fragment>
+          ) : null}
+
+          <Link className="button button-secondary" to="/">
+            Return to List
+          </Link>
         </div>
-      ) : null}
+      </div>
 
       <div className="wrap">
         <h2>Course Detail</h2>

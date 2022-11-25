@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 const UpdateCourse = ({ context }) => {
@@ -34,7 +34,6 @@ const UpdateCourse = ({ context }) => {
       description,
       estimatedTime,
       materialsNeeded,
-      // userId: context.authenticatedUser.id, //used to be id
     };
     context.data
       .updateCourse(
@@ -56,6 +55,10 @@ const UpdateCourse = ({ context }) => {
         // navigate("/error")
       });
   };
+
+  function handleCancel() {
+    navigate(`/courses/${id}`);
+  }
   return (
     <main>
       <div className="wrap">
@@ -124,7 +127,9 @@ const UpdateCourse = ({ context }) => {
           <button className="button" type="submit">
             Update Course
           </button>
-          <button className="button button-secondary">Cancel</button>
+          <button onClick={handleCancel} className="button button-secondary">
+            Cancel
+          </button>
         </form>
       </div>
     </main>
