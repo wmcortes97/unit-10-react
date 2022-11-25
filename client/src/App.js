@@ -12,6 +12,9 @@ import UpdateCourse from "./components/UpdateCourse";
 import UserSignUp from "./components/UserSignUp";
 import CreateCourse from "./components/CreateCourse";
 import PrivateRoute from "./PrivateRoute";
+import Error from "./components/Error";
+import Forbidden from "./components/Forbidden";
+import NotFound from "./components/NotFound";
 
 //------------COMPONENTS WITH CONTEXT-----------//
 
@@ -52,6 +55,9 @@ const App = () => {
         <Route path="/signin" element={<UserSignInWithContext />} />
         <Route path="/signup" element={<UserSignUpWithContext />} />
         <Route path="/signout" element={<UserSignOutWithContext />} />
+        <Route path="/forbidden" element={<Forbidden />} />
+        <Route path="/error" element={<Error />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </React.Fragment>
   );

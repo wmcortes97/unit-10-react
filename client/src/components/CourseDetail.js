@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link, NavLink } from "react-router-dom";
+import { useParams, useNavigate, Link, NavLink } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 
 const CourseDetail = ({ context }) => {
   const [course, setCourse] = useState([]);
 
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     context.data
@@ -16,11 +17,19 @@ const CourseDetail = ({ context }) => {
   }, []);
 
   const handleDelete = (id) => {
-    context.data.deleteCourse(
-      id,
-      context.authenticatedUser.email,
-      context.authenticatedUser.password
-    );
+    context.data
+      .deleteCourse(
+        id,
+        context.authenticatedUser.email,
+        context.authenticatedUser.password
+      )
+      .then(() => {
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
+        navigate("/error");
+      });
   };
 
   return (
@@ -33,14 +42,14 @@ const CourseDetail = ({ context }) => {
               <Link className="button" to="update">
                 Update Course
               </Link>
-              <NavLink
+              <button
                 className="button"
                 to="/"
                 key={id}
                 onClick={() => handleDelete(id)}
               >
                 Delete Course
-              </NavLink>
+              </button>
             </React.Fragment>
           ) : null}
 

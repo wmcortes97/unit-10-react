@@ -51,8 +51,8 @@ const UpdateCourse = ({ context }) => {
         }
       })
       .catch((err) => {
-        console.log(err);
-        // navigate("/error")
+        console.log("interal server error", err);
+        navigate("/error");
       });
   };
 
