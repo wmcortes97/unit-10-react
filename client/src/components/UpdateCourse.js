@@ -24,7 +24,7 @@ const UpdateCourse = ({ context }) => {
         setEstimatedTime(course.estimatedTime);
         setMaterialsNeeded(course.materialsNeeded);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => navigate("/error"));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -73,9 +73,7 @@ const UpdateCourse = ({ context }) => {
   }
   return (
     <main>
-      {context.authenticatedUser.id !== course.userId ? (
-        navigate("/forbidden")
-      ) : (
+      {context.authenticatedUser.id === course.userId ? (
         <div className="wrap">
           <h2>Update Course</h2>
           {errors && errors.length ? (
@@ -147,6 +145,8 @@ const UpdateCourse = ({ context }) => {
             </button>
           </form>
         </div>
+      ) : (
+        navigate("/forbidden")
       )}
     </main>
   );

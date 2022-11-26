@@ -36,7 +36,7 @@ const UserSignUp = ({ context }) => {
       })
       .catch((err) => {
         console.log(err);
-        // navigate("/error")
+        navigate("/error");
       });
   };
   function handleCancel() {

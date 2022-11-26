@@ -18,8 +18,11 @@ const UserSignIn = ({ context }) => {
         } else {
           navigate("/");
         }
+      })
+      .catch((err) => {
+        console.log(err);
+        navigate("/error");
       });
-    // .then(navigate("/"));
   };
 
   return (
