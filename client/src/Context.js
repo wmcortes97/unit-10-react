@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Data from "./Data";
+import Cookies from "js-cookie";
 
 const Context = React.createContext();
 
@@ -39,6 +40,8 @@ export class Provider extends Component {
           authenticatedUser: user,
         };
       });
+      //Set Cookie]
+      Cookies.set("Authenticated User", JSON.stringify(user), { expires: 1 });
     }
     return user;
   };
