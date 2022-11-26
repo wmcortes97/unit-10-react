@@ -1,16 +1,25 @@
 import { useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 const UserSignIn = ({ context }) => {
   const emailAddress = useRef(null);
   const password = useRef(null);
+
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     await context.actions
       .signIn(emailAddress.current.value, password.current.value)
-      .then(navigate("/"));
+      .then(() => {
+        if (location.state?.from) {
+          navigate(location.state.from);
+        } else {
+          navigate("/");
+        }
+      });
+    // .then(navigate("/"));
   };
 
   return (

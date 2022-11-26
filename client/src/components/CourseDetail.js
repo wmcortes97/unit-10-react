@@ -12,10 +12,17 @@ const CourseDetail = ({ context }) => {
     context.data
       .getCourse(id)
       .then((data) => setCourse(data))
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        navigate("/error");
+      });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  /**
+   *
+   * @param {integer} id - id references courseId (via params)to ensure that the correct course will be deleted
+   */
   const handleDelete = (id) => {
     context.data
       .deleteCourse(

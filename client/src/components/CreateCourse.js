@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const CreateCourse = ({ context }) => {
   const [errors, setErrors] = useState([]);
+  const authUser = context.authenticatedUser;
 
   const navigate = useNavigate();
 
@@ -10,6 +11,13 @@ const CreateCourse = ({ context }) => {
   const description = useRef();
   const estimatedTime = useRef();
   const materialsNeeded = useRef();
+
+  /**
+   *
+   * @param {event object} e - prevents the default functionality of form submission
+   *  creates a course object that references input values
+   *  * the course object is them passed to createCourse function via context along with username and password
+   */
 
   const handleCreateCourse = (e) => {
     e.preventDefault();
@@ -35,9 +43,12 @@ const CreateCourse = ({ context }) => {
       })
       .catch((err) => {
         console.log(err);
-        // navigate("/error")
+        navigate("/error");
       });
   };
+  /**
+   * Navigates the user to the course detail page when the press the cancel button
+   */
   function handleCancel() {
     navigate("/");
   }
@@ -68,7 +79,9 @@ const CreateCourse = ({ context }) => {
                 ref={title}
               />
 
-              <p>By Joe Smith</p>
+              <p>
+                By {authUser.firstName} {authUser.lastName}
+              </p>
 
               <label htmlFor="courseDescription">Course Description</label>
               <textarea

@@ -1,9 +1,14 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 
 function PrivateRoute({ children, context }) {
+  const location = useLocation();
   let isAuthenticated = context.authenticatedUser;
-  return isAuthenticated ? children : <Navigate to="/signin" />;
+  return isAuthenticated ? (
+    children
+  ) : (
+    <Navigate to="/signin" replace state={{ from: location }} />
+  );
 }
 
 export default PrivateRoute;

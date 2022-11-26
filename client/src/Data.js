@@ -2,6 +2,15 @@ import React, { useState } from "react";
 import { Buffer } from "buffer";
 
 export default class Data {
+  /**
+   *
+   * @param {string} path - path that replaces url path section
+   * @param {string} method - describes HTTP method: get, post, put, delete,
+   * @param {object} body - object that is passed for post and put requests
+   * @param {boolean} requiresAuth - determines if authorization is needed
+   * @param {object} credentials - credentials passed in authorization header
+   * @returns
+   */
   api(
     path,
     method = "GET",

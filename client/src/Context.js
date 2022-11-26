@@ -31,6 +31,12 @@ export class Provider extends Component {
     );
   }
 
+  /**
+   *
+   * @param {string} username - argument that is passed to get user
+   * @param {string} password - argument that is passed to get user
+   * @returns {object} - returns a user object that will then be included in value and passed via a higher order component
+   */
   signIn = async (username, password) => {
     const user = await this.data.getUser(username, password);
     const plainText = password;
@@ -48,8 +54,12 @@ export class Provider extends Component {
     return user;
   };
 
+  /**
+   * sign out function that removes cookie and authenticated user object
+   */
   signOut = () => {
     this.setState({ authenticatedUser: null });
+    Cookies.remove("authenticatedUser");
   };
 }
 

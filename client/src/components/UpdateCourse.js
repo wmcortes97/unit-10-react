@@ -13,6 +13,7 @@ const UpdateCourse = ({ context }) => {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  //Setting state
   useEffect(() => {
     context.data
       .getCourse(id)
@@ -27,6 +28,12 @@ const UpdateCourse = ({ context }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  /**
+   *
+   * @param {event object} e - prevents the default functionality of form submission
+   * creates a course object that references onChange input value
+   * the course object is them passed to updateCourse function via context along with username and password
+   */
   const handleUpdateCourse = (e) => {
     e.preventDefault();
     const course = {
@@ -55,6 +62,10 @@ const UpdateCourse = ({ context }) => {
         navigate("/error");
       });
   };
+
+  /**
+   * Navigates the user to the course detail page when the press the cancel button
+   */
 
   function handleCancel() {
     navigate(`/courses/${id}`);
