@@ -36,7 +36,7 @@ const UpdateCourse = ({ context }) => {
   /**
    *
    * @param {event object} e - prevents the default functionality of form submission
-   * creates a course object that references onChange input defaultValue
+   * creates a course object that references onChange input value
    * the course object is them passed to updateCourse function via context along with username and password
    */
   const handleUpdateCourse = (e) => {
@@ -78,7 +78,6 @@ const UpdateCourse = ({ context }) => {
   }
   return (
     <main>
-      {/* {context.authenticatedUser.id === course.userId ? ( */}
       <div className="wrap">
         <h2>Update Course</h2>
         {errors && errors.length ? (
@@ -99,9 +98,9 @@ const UpdateCourse = ({ context }) => {
                 id="courseTitle"
                 name="courseTitle"
                 type="text"
-                defaultValue={title}
+                value={title}
                 onChange={(e) => {
-                  setTitle(e.target.defaultValue);
+                  setTitle(e.target.value);
                 }}
               />
 
@@ -113,9 +112,9 @@ const UpdateCourse = ({ context }) => {
               <textarea
                 id="courseDescription"
                 name="courseDescription"
-                defaultValue={description}
+                value={description}
                 onChange={(e) => {
-                  setDescription(e.target.defaultValue);
+                  setDescription(e.target.value);
                 }}
               ></textarea>
             </div>
@@ -125,9 +124,9 @@ const UpdateCourse = ({ context }) => {
                 id="estimatedTime"
                 name="estimatedTime"
                 type="text"
-                defaultValue={estimatedTime}
+                value={estimatedTime}
                 onChange={(e) => {
-                  setEstimatedTime(e.target.defaultValue);
+                  setEstimatedTime(e.target.value);
                 }}
               />
 
@@ -135,9 +134,9 @@ const UpdateCourse = ({ context }) => {
               <textarea
                 id="materialsNeeded"
                 name="materialsNeeded"
-                defaultValue={materialsNeeded}
+                value={materialsNeeded}
                 onChange={(e) => {
-                  setMaterialsNeeded(e.target.defaultValue);
+                  setMaterialsNeeded(e.target.value);
                 }}
               ></textarea>
             </div>
@@ -150,9 +149,6 @@ const UpdateCourse = ({ context }) => {
           </button>
         </form>
       </div>
-      {/* ) : (
-        navigate("/forbidden")
-      )} */}
     </main>
   );
 };

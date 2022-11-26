@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Buffer } from "buffer";
 
 export default class Data {
@@ -108,7 +107,6 @@ export default class Data {
       username,
       password,
     });
-
     if (response.status === 204) {
       return [];
     } else if (response.status === 400) {
