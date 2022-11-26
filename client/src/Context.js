@@ -9,8 +9,10 @@ export class Provider extends Component {
     super();
     this.data = new Data();
 
+    this.cookie = Cookies.get("authenticatedUser");
+
     this.state = {
-      authenticatedUser: null,
+      authenticatedUser: this.cookie ? JSON.parse(this.cookie) : null,
     };
   }
 
@@ -40,8 +42,8 @@ export class Provider extends Component {
           authenticatedUser: user,
         };
       });
-      //Set Cookie]
-      Cookies.set("Authenticated User", JSON.stringify(user), { expires: 1 });
+      //Set Cookie
+      Cookies.set("authenticatedUser", JSON.stringify(user), { expires: 1 });
     }
     return user;
   };
