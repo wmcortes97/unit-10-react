@@ -36,6 +36,7 @@ const UpdateCourse = ({ context }) => {
    */
   const handleUpdateCourse = (e) => {
     e.preventDefault();
+
     const course = {
       title,
       description,
