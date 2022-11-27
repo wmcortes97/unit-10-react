@@ -29,7 +29,13 @@ const UpdateCourse = ({ context }) => {
           setMaterialsNeeded(course.materialsNeeded);
         }
       })
-      .catch((err) => navigate("/error"));
+      .catch((err) => {
+        if (err.message === "404") {
+          navigate("/notfound");
+        } else {
+          navigate("/error");
+        }
+      });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

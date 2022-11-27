@@ -115,8 +115,10 @@ export default class Data {
       return response.json().then((data) => {
         return data.errors;
       });
+    } else if (response.status === 404) {
+      throw new Error("404");
     } else {
-      throw new Error();
+      throw new Error("505");
     }
   }
 
