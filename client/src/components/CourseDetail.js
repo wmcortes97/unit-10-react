@@ -11,10 +11,15 @@ const CourseDetail = ({ context }) => {
   useEffect(() => {
     context.data
       .getCourse(id)
-      .then((data) => setCourse(data))
+      .then((data) => {
+        setCourse(data);
+      })
       .catch((err) => {
-        console.log(err);
-        navigate("/error");
+        if (err.message === "404") {
+          navigate("/notfound");
+        } else {
+          navigate("/error");
+        }
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -34,7 +39,6 @@ const CourseDetail = ({ context }) => {
         navigate("/");
       })
       .catch((err) => {
-        console.log(err);
         navigate("/error");
       });
   };
