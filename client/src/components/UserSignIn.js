@@ -9,6 +9,7 @@ const UserSignIn = ({ context }) => {
   const location = useLocation();
 
   const handleSubmit = async (e) => {
+    console.log(location.state);
     e.preventDefault();
     await context.actions
       .signIn(emailAddress.current.value, password.current.value)

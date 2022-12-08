@@ -17,7 +17,7 @@ export default class Data {
     requiresAuth = false,
     credentials = null
   ) {
-    const url = `http://localhost:5000/api${path}`;
+    const url = `https://unit-10-react-production.up.railway.app/${path}`;
 
     const options = {
       method,
