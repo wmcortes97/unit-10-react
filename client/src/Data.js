@@ -17,7 +17,7 @@ export default class Data {
     requiresAuth = false,
     credentials = null
   ) {
-    const url = `https://unit-10-react-production.up.railway.app${path}`;
+    const url = `https://unit-10-react-production.up.railway.app/${path}`;
 
     const options = {
       method,
@@ -69,7 +69,7 @@ export default class Data {
 
   //----------------------------HELPER FUNCTIONS: COURSES----------------------------------//
   async getCourses() {
-    const response = await this.api("/courses", "GET");
+    const response = await this.api("courses", "GET");
     if (response.status === 200) {
       return response.json().then((data) => data);
     } else {
